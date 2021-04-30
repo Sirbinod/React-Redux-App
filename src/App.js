@@ -1,15 +1,27 @@
-import Navbar from "./Component/Navbar";
-import ProductCart from "./Component/ProductCart";
-
+import Card from "./Component/Card";
+import Home from "./Component/home";
+import {Provider} from "react-redux";
+import configureStore from "./redux/store/configureStore";
 function App() {
+  const initialState = {
+    categories: [],
+    categoriesIsLoading: false,
+    products: [],
+  };
+
+  const store = configureStore(initialState);
+
   return (
     <>
-      <section>
-        <Navbar />
-      </section>
-      <section className="my-10">
-        <ProductCart />
-      </section>
+      <Provider store={store}>
+        <section>
+          <Home />
+
+          <div className="">
+            <Card />
+          </div>
+        </section>
+      </Provider>
     </>
   );
 }
